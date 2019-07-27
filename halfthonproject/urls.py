@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import halfthonapp.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',halfthonapp.views.index, name='index'),
 ]
