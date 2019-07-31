@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-import halfthonapp.views
+from django.urls import path, include
+from halfthonapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',halfthonapp.views.index, name='index'),
+    path('', views.index, name='index'),
+    path('blog/<int:blog_id>', views.detail, name='detail'),
+    path('blog/newpeer/', views.newpeer, name='newpeer'),
+    path('blog/create/', views.create, name='create'),
+    path('blog/', include('halfthonapp.urls')),
 ]

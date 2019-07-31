@@ -1,1 +1,25 @@
-<h1> 외않되? </h1>
+<br>
+<h1>출퇴근 관리 페이지</h1>
+<br>
+<br>
+{% if user.is_authenticated %}
+{% for blog in posts %}
+    <a href="{% url 'detail' blog.id %}"> {{blog.peername}}</a> {{blog.attend}} <br>
+{% endfor %}
+<a href="{% url 'newpeer' %}">직원 추가하기</a>
+{% else %}
+    <h2>서비스에 접근하려면 로그인하세요</h2>
+    <form method="POST" action="{% url 'index'%}">
+            {% csrf_token %}
+            Username:
+            <br>
+            <input name="username" type="text" value="">
+            <br>
+            Password:
+            <br>
+            <input name="password" type="pasword" value="">
+            <br>
+            <br>
+            <input class="btn btn-primary" type="submit" value="로그인">
+    </form>
+{% endif %}
